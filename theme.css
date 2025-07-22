@@ -170,6 +170,7 @@ button:disabled {
     align-items: center;
     background: var(--card-bg);
     border-radius: 16px;
+    border: 2px solid var(--corp-color, #fff);
     margin-bottom: 0; 
     padding: 18px 24px;
     box-shadow: 0 2px 8px var(--shadow-color);
@@ -585,7 +586,7 @@ button:disabled {
 }
 
 /* Widescreen Styles */
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
     .widescreen-toggle {
         display: block;
     }

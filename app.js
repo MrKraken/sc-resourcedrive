@@ -151,7 +151,7 @@ function renderCorps(date) {
         }
 
         let card = $(`
-<div class="corp-card${isTop ? ' top-corp' : ''}" style="${isTop ? `--corp-color: ${corp.color};` : ''}">
+<div class="corp-card${isTop ? ' top-corp' : ''}" style="--corp-color: ${corp.color};">
     <div class="corp-logo">
         <img src="${corp.logo || ''}" alt="${corp.displayName}" width="48" height="48" />
     </div>
