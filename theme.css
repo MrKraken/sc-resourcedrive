@@ -19,8 +19,8 @@
     /* Status Colors */
     --positive: #4CAF50;
     --negative: #af5656;
-    --link-color: #007bff;
-    --link-hover: #0056b3;
+    --link-color: #8f7bff;
+    --link-hover: #47d8ad;
     --warning-color: #ffc107;
     --info-color: #007bff;
     --muted-color: #6c757d;
@@ -503,9 +503,15 @@ button:disabled {
 }
 
 .workaround-link:hover,
-.issue-link:hover {
+.issue-link:hover,
+.link:hover {
     text-decoration: underline;
     color: var(--link-hover);
+}
+.link {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
 }
 
 /* ==========================================
