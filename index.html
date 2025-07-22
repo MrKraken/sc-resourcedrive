@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Resource Drive Score Tracking by MrKraken</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="theme.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="widescreen-toggle">
+            <button id="widescreen-btn" class="toggle-btn">
+                <span class="toggle-icon">🖥️</span>
+                <span class="toggle-text">Widescreen Mode</span>
+            </button>
+        </div>
+        <div class="date-pagination">
+            <button id="prev-date">&#8592; Newer</button>
+            <span id="date-label" style="font-size:1.2em; font-weight:bold;"></span>
+            <button id="next-date">Older &#8594;</button>
+
+        </div>
+        <div class="last-updated">
+            <span id="last-updated-label">Last Updated: <span id="last-updated-time">Loading...</span></span>
+        </div>
+        <div id="corps"></div>
+        <div class="chart-container">
+            <h3>Contributions Over Time</h3>
+            <canvas id="scoreChart"></canvas>
+        </div>
+        <div class="accordion" id="history-accordion">
+            <button class="accordion-header" type="button">Last 10 Data Entries ▼</button>
+            <div class="accordion-content">
+                <div id="history-table"></div>
+            </div>
+        </div>
+        <div class="accordion" id="bugs-accordion">
+            <button class="accordion-header" type="button">Bugs ▼</button>
+            <div class="accordion-content">
+                <div id="bugs-list"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-text">
+                <div>This is an unofficial Star Citizen Fan Site created by <a href="https://youtube.com/@MrKraken"
+                        target="_blank" class="creator-link">MrKraken</a></div>
+                <div class="disclaimer">Not affiliated with the Cloud Imperium group of companies. All content on this
+                    site
+                    not authored by its host or users are property of their respective owners</div>
+                <div class="ai-disclosure disclaimer">🤖 CoPilot has been used as a debugging aide & to
+                    (hopefully) optimise for performance. AI should be used as a tool to assist, not replace.</div>
+            </div>
+
+            <div class="footer-images">
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

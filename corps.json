@@ -1,0 +1,22 @@
+{
+    "hurston": {
+        "name": "Hurston Dynamics",
+        "color": "#AD9540",
+        "logo_svg": "icons/hurston.svg"
+    },
+    "microtech": {
+        "name": "microTech",
+        "color": "#8FC84C",
+        "logo_svg": "icons/microtech.svg"
+    },
+    "arccorp": {
+        "name": "ArcCorp",
+        "color": "#8C413B",
+        "logo_svg": "icons/arccorp.svg"
+    },
+    "crusader": {
+        "name": "Crusader Industries",
+        "color": "#1772D5",
+        "logo_svg": "icons/crusader.svg"
+    }
+}

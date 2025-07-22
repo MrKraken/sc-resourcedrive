@@ -1,0 +1,46 @@
+[
+    {
+        "title": "Not all missions available for resource drive",
+        "project": "STARC",
+        "issue_number": 174890,
+        "last_status": "Confirmed",
+        "workaround": {
+            "possible": false,
+            "description": "No known workaround available.",
+            "help_link": "#"
+        }
+    },
+    {
+        "title": "Freight Elevators may not lower, doors close and open",
+        "project": "STARC",
+        "issue_number": 174707,
+        "last_status": "Pending Fix Deployment",
+        "workaround": {
+            "possible": true,
+            "description": "Varying workarounds with degrees of success. See Spectrum thread for details.",
+            "help_link": "https://robertsspaceindustries.com/spectrum/community/SC/forum/3/thread/freight-elevator-issues-and-workarounds"
+        }
+    },
+    {
+        "title": "Unable to move Cargoboxes after ship went into storage",
+        "project": "STARC",
+        "issue_number": 173347,
+        "last_status": "Under investigation",
+        "workaround": {
+            "possible": true,
+            "description": "Not exactly a workaround, but to avoid this, don't allow your ship to be auto-stored. Most common cause of this is using an ATLS that has been attached to grid when you quantum across DGS. When you get in the ATLS the hangar will despawn around you and store your ship. Just leaave the ATLS behind and claim a fresh one when you get back to your hangar",
+            "help_link": "#"
+        }
+    },
+    {
+        "title": "RAFT Elevator stuck in down position",
+        "project": "STARC",
+        "issue_number": 165871,
+        "last_status": "Confirmed",
+        "workaround": {
+            "possible": true,
+            "description": "Store/Retrieve. Common cause is pressing the elevator button to go up before the animation [audio] has finished",
+            "help_link": "#"
+        }
+    }
+]
