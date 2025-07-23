@@ -62,8 +62,9 @@ function enrichWithMeta() {
 
 function calculatePlayers(score) {
     const tier5Score = 2826;
+    const playersAdjustment = 0.9;
     if (score) {
-        return `Estimated Tier 5 players: ${Math.floor(score / tier5Score).toLocaleString()}`;
+        return `Estimated Tier 5 players: ${Math.floor((score / tier5Score) * playersAdjustment).toLocaleString()}`;
     }
 
 }

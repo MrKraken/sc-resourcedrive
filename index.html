@@ -3,14 +3,32 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; 
+         script-src 'self' 'unsafe-inline' 
+                    https://code.jquery.com 
+                    https://cdn.jsdelivr.net; 
+         style-src 'self' 'unsafe-inline' 
+                   https://fonts.googleapis.com; 
+         font-src https://fonts.gstatic.com; 
+         img-src 'self' data: https:; 
+         connect-src 'self'; 
+         base-uri 'self'; 
+         form-action 'self';">
     <title>Resource Drive Score Tracking by MrKraken</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" integrity="sha256-Lye89HGy1p3XhJT24hcvsoRw64Q4IOL5a7hdOflhjTA="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"
+        integrity="sha256-6nqzDSbDjc8fLSa7Q+c6lFN7WPGQb1XhpUbdCTIbVhU=" crossorigin="anonymous"></script>
+    <script>
+        if (typeof $ === 'undefined') {
+            console.error('jQuery failed to load!');
+            document.body.innerHTML = '<h1>Error: jQuery failed to load</h1>';
+        } else {
+            console.log('jQuery loaded successfully:', $.fn.jquery);
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap');
     </style>
