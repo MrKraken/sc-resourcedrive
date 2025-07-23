@@ -45,6 +45,14 @@ function enrichWithMeta() {
     }
 }
 
+function calculatePlayers(score) {
+    const tier5Score = 2826;
+    if (score) {
+        return `Estimated Tier 5 players: ${Math.floor(score / tier5Score).toLocaleString()}`;
+    }
+
+}
+
 function calculateScoreDifferencesForDate(currentDate) {
     if (!corpData[currentDate]) return {};
 
@@ -169,7 +177,8 @@ function renderCorps(date) {
         <div class="score-details">
             <span class="score-diff score-meta-tag ${diffClass}">${diffText}</span>
             <span class="score-per-hour score-meta-tag ${diffClass}">${perHourText}/hr</span>
-        </div>
+            
+        </div><div class="score-details score-players score-meta-tag">${calculatePlayers(corp.score)}</div>
     </div>
 </div>
 `);
