@@ -11,26 +11,41 @@ function parseCSV(csv) {
     csvHeader = lines[0].split(',').map(h => h.trim()).filter(h => h.length > 0);
     let tsIdx = csvHeader.indexOf('timestamp');
     csvRows = [];
+
+    // Create a map to track which dates we've already processed
+    let processedDates = new Set();
+
     for (let i = 1; i < lines.length; i++) {
         let row = lines[i].split(',');
         while (row.length < csvHeader.length) row.push('');
         if (row.length < 2) continue;
         csvRows.push(row);
+
         let ts = row[tsIdx];
         let date = new Date(parseInt(ts) * 1000);
         let dateStr = date.toISOString().slice(0, 10);
-        corpData[dateStr] = [];
-        for (let j = 1; j < csvHeader.length; j++) {
-            let sn = csvHeader[j];
-            let score = parseInt(row[j], 10) || 0;
-            corpData[dateStr].push({
-                shortname: sn,
-                score: score
-            });
+
+        // Only process each date once (keeps the first occurrence)
+        if (!processedDates.has(dateStr)) {
+            processedDates.add(dateStr);
+            corpData[dateStr] = [];
+
+            for (let j = 1; j < csvHeader.length; j++) {
+                let sn = csvHeader[j];
+                let score = parseInt(row[j], 10) || 0;
+                corpData[dateStr].push({
+                    shortname: sn,
+                    score: score
+                });
+            }
         }
     }
 }
-
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
 function enrichWithMeta() {
     for (let date in corpData) {
         corpData[date].forEach(corp => {
@@ -161,11 +176,11 @@ function renderCorps(date) {
         let card = $(`
 <div class="corp-card${isTop ? ' top-corp' : ''}" style="--corp-color: ${corp.color};">
     <div class="corp-logo">
-        <img src="${corp.logo || ''}" alt="${corp.displayName}" width="48" height="48" />
+       <img src="${escapeHtml(corp.logo || '')}" alt="${escapeHtml(corp.displayName)}" width="48" height="48" />
     </div>
     <div class="corp-info">
         <div class="corp-name">
-            ${corp.displayName}
+            ${escapeHtml(corp.displayName)}
             ${gapText}
         </div>
         <div class="score-bar-bg">
