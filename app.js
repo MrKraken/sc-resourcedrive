@@ -386,50 +386,6 @@ function hexToRgba(hex, alpha) {
     return `rgba(${r},${g},${b},${alpha})`;
 }
 
-function renderBugsList(bugs) {
-    let html = '';
-
-    bugs.forEach(bug => {
-        let statusClass = bug.last_status.toLowerCase()
-            .replace(/\s+/g, '')
-            .replace('pendingfixdeployment', 'pending')
-            .replace('underinvestigation', 'investigating');
-
-        let workaroundClass = bug.workaround.possible ? 'workaround-available' : 'workaround-none';
-        let workaroundStatus = bug.workaround.possible ? '✓ Workaround Available' : '✗ No Workaround';
-        let helpLink = bug.workaround.help_link !== '#' ?
-            `<a href="${bug.workaround.help_link}" target="_blank" class="workaround-link">More Info</a>` : '';
-
-        let issueCode = `${bug.project}-${bug.issue_number}`;
-        let issueUrl = `https://issue-council.robertsspaceindustries.com/projects/STAR-CITIZEN/issues/${issueCode}`;
-
-        html += `
-            <div class="bug-item">
-                <div class="bug-title">${bug.title}</div>
-                <div class="bug-meta">
-                    <span><strong>Issue:</strong> <a href="${issueUrl}" target="_blank" class="issue-link">#${issueCode}</a></span>
-                    <span class="bug-status ${statusClass}">${bug.last_status}</span>
-                </div>
-                <div class="bug-workaround ${workaroundClass}">
-                    <strong>${workaroundStatus}</strong>
-                    <div style="margin-top: 4px;">${bug.workaround.description}</div>
-                    ${helpLink}
-                </div>
-            </div>
-        `;
-    });
-
-    $("#bugs-list").html(html);
-}
-
-function loadBugs() {
-    $.getJSON('./bugs.json', function (bugs) {
-        renderBugsList(bugs);
-    }).fail(function () {
-        $("#bugs-list").html('<p style="color: var(--subtle-text);">Unable to load bugs data.</p>');
-    });
-}
-
 let isWidescreenMode = false;
 
 function toggleWidescreenMode() {
@@ -471,7 +427,6 @@ $(function () {
             setupPagination();
             renderHistoryTable();
             renderChart();
-            loadBugs();
             displayLastUpdated();
         });
         container.addClass('regular-content');
@@ -495,6 +450,4 @@ $(function () {
         let text = $(this).text().includes("Data Entries") ? "Last 10 Data Entries" : "Known Bugs";
         $(this).html(`${text} ${isOpen ? "▲" : "▼"}`);
     });
-
-    loadBugs();
 });
