@@ -12,8 +12,11 @@ function parseCSV(csv) {
     let tsIdx = csvHeader.indexOf('timestamp');
     csvRows = [];
 
-    // Create a map to track which dates we've already processed
-    let processedDates = new Set();
+    // Clear existing data
+    corpData = {};
+
+    // Track the latest timestamp for each date
+    let latestRowForDate = {};
 
     for (let i = 1; i < lines.length; i++) {
         let row = lines[i].split(',');
@@ -21,23 +24,28 @@ function parseCSV(csv) {
         if (row.length < 2) continue;
         csvRows.push(row);
 
-        let ts = row[tsIdx];
-        let date = new Date(parseInt(ts) * 1000);
+        let ts = parseInt(row[tsIdx]);
+        let date = new Date(ts * 1000);
         let dateStr = date.toISOString().slice(0, 10);
 
-        // Only process each date once (keeps the first occurrence)
-        if (!processedDates.has(dateStr)) {
-            processedDates.add(dateStr);
-            corpData[dateStr] = [];
+        // Keep track of the latest row for each date
+        if (!latestRowForDate[dateStr] || ts > parseInt(latestRowForDate[dateStr][tsIdx])) {
+            latestRowForDate[dateStr] = row;
+        }
+    }
 
-            for (let j = 1; j < csvHeader.length; j++) {
-                let sn = csvHeader[j];
-                let score = parseInt(row[j], 10) || 0;
-                corpData[dateStr].push({
-                    shortname: sn,
-                    score: score
-                });
-            }
+    // Now process only the latest row for each date
+    for (let dateStr in latestRowForDate) {
+        let row = latestRowForDate[dateStr];
+        corpData[dateStr] = [];
+
+        for (let j = 1; j < csvHeader.length; j++) {
+            let sn = csvHeader[j];
+            let score = parseInt(row[j], 10) || 0;
+            corpData[dateStr].push({
+                shortname: sn,
+                score: score
+            });
         }
     }
 }
@@ -422,7 +430,7 @@ $(function () {
     const container = $('.container');
     $.getJSON('./corps.json', function (corps) {
         corpsMeta = corps;
-        $.get('./data.csv', function (csv) {
+        $.get('./data.csv?v=' + Date.now(), function (csv) {
             parseCSV(csv);
             enrichWithMeta();
             setupPagination();
