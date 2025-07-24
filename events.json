@@ -1,0 +1,37 @@
+    [
+        {
+            "id": "hotfix_2025_07_18",
+            "date": "2025-07-18T23:00:00Z",
+            "title": "🛠️",
+            "description": "Client hotfixed with CL 9970231 with further top client crash fixes. DGS hotfix 9970231 is rolling out and will take a bit to fully propagate across all shards.",
+            "type": "hotfix"
+        },
+        {
+            "id": "hotfix_2025_07_20",
+            "date": "2025-07-20T12:00:00Z",
+            "title": "🛠️",
+            "description": "Client hotfixed with CL 9971117 with further contract location updates to spread out mission locations",
+            "type": "hotfix"
+        },
+        {
+            "id": "maintenance_2025_07_21",
+            "date": "2025-07-21T16:00:00Z",
+            "title": "🛠️",
+            "description": " We are currently preparing further hotfix updates for the LIVE environment with further mission flow fixes for sending cargo pickups to more locations, cargo platform fixes (STARC-174707), and Wine connection issues (STARC-174915). These will start rolling out to the HOTFIX channel and LIVE servers tonight and over the next couple of days.",
+            "type": "hotfix"
+        },
+        {
+            "id": "maintenance_2025_07_22",
+            "date": "2025-07-22T13:00:00Z",
+            "title": "🚧🛠️",
+            "description": "Along with the LIVE maintenance today, we have updated all the clients and shards to the latest 9978513 hotfix. This includes a few updates and fixes for Freight Elevators, Missions, and Linux.",
+            "type": "maintenance"
+        },
+        {
+            "id": "hotfix_2025_07_23",
+            "date": "2025-07-23T15:25:00Z",
+            "title": "🛠️",
+            "description": "4.2.1 LIVE Has been updated with the latest 9982497 Client/DGS hotfix to address these two issues. STARC-174022 PU - Freight Elevator / Cargo - Cargo area is present on top of Freight Elevator building and placing loose items there will cause \"Internal Error\" STARC-174557 PU - Resource Gathering - Missions - Resource Gathering Intro / Hauling - Contract unable to complete when there is noticeable \"amount/total\" in the contract.",
+            "type": "hotfix"
+        }
+    ]

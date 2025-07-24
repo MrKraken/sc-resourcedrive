@@ -9,7 +9,8 @@
     --logo-bg: #222;
     --bar-bg: #444;
     --bar-color: #888;
-    --subtle-text: #666;
+    --subtle-text: #7e7e7e;
+    --neutral-bg-solid: #555;
     
     /* Button Colors */
     --button-bg: #444;
@@ -118,6 +119,35 @@ button {
 button:disabled {
     opacity: 0.5;
     cursor: default;
+}
+/* ==========================================
+   Tooltips
+   ========================================== */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    color: var(--subtle-text);
+    background: var(--card-bg);
+    text-align: center;
+    border: 1px solid var(--subtle-text);
+    border-radius: 12px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the tooltip */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
 }
 
 /* ==========================================

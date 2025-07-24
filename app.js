@@ -181,7 +181,7 @@ function renderCorps(date) {
         let gapText = '';
         if (idx > 0) {
             let gap = corps[idx - 1].score - corp.score;
-            gapText = `<span class="score-gap negative">(-${gap.toLocaleString()})</span>`;
+            gapText = `<span class="score-gap negative tooltip">(-${gap.toLocaleString()}) <span class="tooltip-text">Difference from next highest corp</span></span>`;
         }
 
         let card = $(`
@@ -299,6 +299,39 @@ function cleanerSCULabel(value) {
     }
 }
 
+function createEventAnnotations(events) {
+    /* https://www.chartjs.org/chartjs-plugin-annotation/latest/guide/types/line.html */
+    const annotations = {};
+    const rootStyle = getComputedStyle(document.documentElement);
+    const eventColors = {
+        maintenance: { label: 'rgba(255, 0, 0, 0.18)', line: 'rgba(255, 0, 0, 0.5)' },
+        update: { label: 'rgba(0, 162, 255, 0.18)', line: 'rgba(0, 162, 255, 0.5)' },
+        hotfix: { label: 'rgba(255, 191, 0, 0.18)', line: 'rgba(255, 191, 0, 0.5)' }
+    };
+
+
+    events.forEach(event => {
+        annotations[event.id] = {
+            type: 'line',
+            xMin: event.date,
+            xMax: event.date,
+            borderWidth: 1,
+            borderDash: [5, 5],
+            borderColor: eventColors[event.type].line || '#888',
+            label: {
+                display: true,
+                content: event.title,
+                position: 'start',
+                backgroundColor: eventColors[event.type].label || '#888',
+                color: 'white',
+                font: { size: 14 }
+            }
+        };
+    });
+
+    return annotations;
+}
+
 function renderChart() {
     /**
      * Chart.js docs - https://www.chartjs.org/docs/latest/
@@ -307,6 +340,7 @@ function renderChart() {
     const ctx = document.getElementById('scoreChart').getContext('2d');
     const datasets = [];
     const corpShortnames = csvHeader.slice(1);
+
 
     corpShortnames.forEach(shortname => {
         const meta = corpsMeta[shortname];
@@ -353,6 +387,9 @@ function renderChart() {
                         color: '#e9e9e9',
                         usePointStyle: true
                     }
+                },
+                annotation: {
+                    annotations: createEventAnnotations(gameEvents)
                 }
             },
             scales: {
@@ -430,8 +467,14 @@ function toggleWidescreenMode() {
 // Load it all up
 $(function () {
     const container = $('.container');
-    $.getJSON('./corps.json', function (corps) {
+
+    Promise.all([
+        $.getJSON('./corps.json'),
+        $.getJSON('./events.json').catch(() => []) // Return empty array if events.json fails
+    ]).then(([corps, events]) => {
         corpsMeta = corps;
+        gameEvents = events;
+
         $.get('./data.csv?v=' + Date.now(), function (csv) {
             parseCSV(csv);
             enrichWithMeta();
