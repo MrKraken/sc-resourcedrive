@@ -320,7 +320,7 @@ function createEventAnnotations(events) {
                 xMax: event.endDate,
                 backgroundColor: eventColors[event.type]?.label || 'rgba(128, 128, 128, 0.18)',
                 borderColor: eventColors[event.type]?.line || '#888',
-                borderWidth: 1,
+                borderWidth: 0,
                 borderDash: [5, 5],
                 label: {
                     display: true,
