@@ -304,29 +304,52 @@ function createEventAnnotations(events) {
     const annotations = {};
     const rootStyle = getComputedStyle(document.documentElement);
     const eventColors = {
-        maintenance: { label: 'rgba(255, 0, 0, 0.18)', line: 'rgba(255, 0, 0, 0.5)' },
+        maintenance: { label: 'rgba(255, 0, 0, 0.1)', line: 'rgba(255, 0, 0, 0.5)' },
         update: { label: 'rgba(0, 162, 255, 0.18)', line: 'rgba(0, 162, 255, 0.5)' },
         hotfix: { label: 'rgba(255, 191, 0, 0.18)', line: 'rgba(255, 191, 0, 0.5)' }
     };
 
 
     events.forEach(event => {
-        annotations[event.id] = {
-            type: 'line',
-            xMin: event.date,
-            xMax: event.date,
-            borderWidth: 1,
-            borderDash: [5, 5],
-            borderColor: eventColors[event.type].line || '#888',
-            label: {
-                display: true,
-                content: event.title,
-                position: 'start',
-                backgroundColor: eventColors[event.type].label || '#888',
-                color: 'white',
-                font: { size: 14 }
-            }
-        };
+        // Check if event has both start and end dates
+        if (event.endDate && event.date !== event.endDate) {
+            // Create a box annotation for duration events
+            annotations[event.id] = {
+                type: 'box',
+                xMin: event.date,
+                xMax: event.endDate,
+                backgroundColor: eventColors[event.type]?.label || 'rgba(128, 128, 128, 0.18)',
+                borderColor: eventColors[event.type]?.line || '#888',
+                borderWidth: 1,
+                borderDash: [5, 5],
+                label: {
+                    display: true,
+                    content: event.title,
+                    position: 'center',
+                    backgroundColor: eventColors[event.type]?.label || '#888',
+                    color: 'white',
+                    font: { size: 14 }
+                }
+            };
+        } else {
+            // Create a line annotation for single point events
+            annotations[event.id] = {
+                type: 'line',
+                xMin: event.date,
+                xMax: event.date,
+                borderWidth: 1,
+                borderDash: [5, 5],
+                borderColor: eventColors[event.type]?.line || '#888',
+                label: {
+                    display: true,
+                    content: event.title,
+                    position: 'start',
+                    backgroundColor: eventColors[event.type]?.label || '#888',
+                    color: 'white',
+                    font: { size: 14 }
+                }
+            };
+        }
     });
 
     return annotations;
