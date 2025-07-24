@@ -163,6 +163,8 @@ function renderCorps(date) {
     corps = corps.slice().sort((a, b) => b.score - a.score);
     let maxScore = corps.length ? corps[0].score : 1;
     let scoreDiffs = calculateScoreDifferencesForDate(date);
+    let totalScore = corps.reduce((sum, c) => sum + c.score, 0);
+    $("#total-score-value").text(totalScore.toLocaleString());
 
     $("#corps").empty();
     corps.forEach((corp, idx) => {
@@ -445,7 +447,7 @@ $(function () {
         }
         $('#widescreen-btn').on('click', toggleWidescreenMode);
         $(window).on('resize', function () {
-            if (window.innerWidth < 1920 && isWidescreenMode) {
+            if (window.innerWidth < 1280 && isWidescreenMode) {
                 toggleWidescreenMode();
             }
         });

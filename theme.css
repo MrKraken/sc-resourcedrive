@@ -124,7 +124,7 @@ button:disabled {
    NAVIGATION & PAGINATION
    ========================================== */
 .date-pagination {
-    margin-bottom: 30px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -135,7 +135,7 @@ button:disabled {
    ========================================== */
 .last-updated {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     color: var(--subtle-text);
     font-size: 0.9em;
 }
@@ -144,6 +144,17 @@ button:disabled {
     font-weight: bold;
     color: var(--foreground);
 }
+
+/* ==========================================
+   TOTAL CONTRIBUTION
+   ========================================== */
+   .total-score {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--foreground);
+}
+
 /* ==========================================
    WIDESCREEN TOGGLE
    ========================================== */
