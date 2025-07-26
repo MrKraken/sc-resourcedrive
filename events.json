@@ -34,5 +34,12 @@
             "title": "🛠️",
             "description": "4.2.1 LIVE Has been updated with the latest 9982497 Client/DGS hotfix to address these two issues. STARC-174022 PU - Freight Elevator / Cargo - Cargo area is present on top of Freight Elevator building and placing loose items there will cause \"Internal Error\" STARC-174557 PU - Resource Gathering - Missions - Resource Gathering Intro / Hauling - Contract unable to complete when there is noticeable \"amount/total\" in the contract.",
             "type": "hotfix"
+        },
+        {
+            "id": "hotfix_2025_07_24",
+            "date": "2025-07-24T22:45:00Z",
+            "title": "🛠️",
+            "description": " We've deployed a service-side hotfix onto the LIVE environment that should make \"Ship Under Attack\" (Resource Drive), Gilly's Flight School, and Foxwell missions constantly available",
+            "type": "hotfix"
         }
     ]
